@@ -29,7 +29,7 @@ export default {
     let tracks=JSON.parse(localStorage.getItem('tracks'));
     let count = JSON.parse(localStorage.getItem('count'));
     if(!count){
-      let count=0;
+      count=0;
       localStorage.setItem('count',JSON.stringify(count));
     }
     if(!tracks){
@@ -50,6 +50,9 @@ export default {
     }
   },
   methods:{
+    tracksFresh(){
+      this.tracks=JSON.parse(localStorage.getItem('tracks'));
+    },
     newTrack(times,pitchs){
       let tracks=JSON.parse(localStorage.getItem('tracks'));
       times=times.map(i=>i-times[0]);
@@ -58,15 +61,13 @@ export default {
       this.tracks=tracks;
       this.count++;
       localStorage.setItem('count',JSON.stringify(this.count));
+      this.tracks=JSON.parse(localStorage.getItem('tracks'));
     },
     deleteTrack(trackId){
       let tracks=JSON.parse(localStorage.getItem('tracks'));
       tracks=tracks.filter(item=>{return item.trackID!=trackId});
       localStorage.setItem('tracks',JSON.stringify(tracks));
       this.tracks=tracks;
-    },
-    tracksFresh(){
-      this.tracks=JSON.parse(localStorage.getItem('tracks'));
     },
   },
 }

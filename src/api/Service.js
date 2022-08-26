@@ -1,7 +1,8 @@
 var http = require('http');
 var url = require('url');
 var mysql = require('mysql');
-
+module.exports= {initServer};
+function initServer(){
 http.createServer(function (request, response) {
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.writeHead(200, {'Content-Type': 'application/json',});
@@ -23,7 +24,7 @@ http.createServer(function (request, response) {
       let query="SELECT tracks FROM tracks WHERE user_id=(SELECT user_id FROM users WHERE user_name='"+params.username+"');";
       connection.query(query,function(error,result){
         if(error){
-          console.log('[database ERROR] - ',err.message);
+          console.log('[database ERROR] - ',error.message);
         }
         console.log(result[0].tracks);
         response.end(resData('1','获得tracks成功',result[0].tracks));
@@ -209,4 +210,5 @@ console.log('Server running at http://127.0.0.1:8888/');
 
 function resData(okCode,message,data){
   return JSON.stringify({'okCode':okCode,"message":message,"data":data});
+}
 }

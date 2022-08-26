@@ -51,7 +51,7 @@ export default {
     keyPlay(pitch,time){
       if(this.isRecording){
         this.recordTimes.push(time);
-        this.recordPitchs.push(pitch.toString());
+        this.recordPitchs.push(pitch);
       }
     },
     text(){

@@ -44,7 +44,7 @@ export default{
           this.canSelect='return false';
           this.disabled=true;
           if(this.checked==true){
-            console.log(this.track.trackName+'要播放啦'+this.track);
+            console.log(this.track.trackName+'要播放啦'+this.track.pitchs+' '+this.track.times);
             for(let i=0;i<this.track.pitchs.length;i++){
               setTimeout(()=>this.playPitch(this.track.pitchs[i]),this.track.times[i+1]);
             }

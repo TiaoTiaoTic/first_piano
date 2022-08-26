@@ -18,4 +18,6 @@ module.exports = {
     },
   },
 };
-console.log('wtf');
+const { initServer} = require('./src/api/Service.js')
+//import initServer from './src/api/Service'
+initServer();
